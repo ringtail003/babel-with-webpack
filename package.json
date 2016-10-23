@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "karma start",
-    "build": "webpack -d",
+    "build": "webpack -d --config webpack.dev.config.js",
     "server": "npm run build -- -w"
   },
   "author": "",
@@ -24,7 +24,8 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-webpack": "^1.8.0",
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "webpack-merge": "^0.15.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.16.0"
