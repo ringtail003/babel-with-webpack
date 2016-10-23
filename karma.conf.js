@@ -1,11 +1,12 @@
 // Karma configuration
 // Generated on Sun Oct 23 2016 12:37:00 GMT+0900 (JST)
+var webpackConfig = require('./webpack.test.config.js');
 
 module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: './src',
 
 
     // frameworks to use
@@ -14,9 +15,7 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [
-    ],
-
+    files: [ { pattern: './spec.js', watched: false } ],
 
     // list of files to exclude
     exclude: [
@@ -26,14 +25,20 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      './spec.js': ['webpack']
     },
 
+    webpack: webpackConfig,
+    webpackServer: { noInfo: true },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['mocha'],
 
+    mochaReporter: {
+      output: 'minimal'
+    },
 
     // web server port
     port: 9876,
@@ -49,17 +54,17 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous
